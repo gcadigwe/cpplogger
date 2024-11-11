@@ -1,0 +1,6 @@
+[INFO] [2024-11-11 20:42:23] This is the first info message.
+[DEBUG] [2024-11-11 20:42:23] This is the first Debug message.
+[ERROR] [2024-11-11 20:42:23] This is first error message.
+[DEBUG] [2024-11-11 20:42:23] This is the second Debug message.
+[ERROR] [2024-11-11 20:42:23] This is second error message.
+[ERROR] [2024-11-11 20:42:23] This is first error message.
