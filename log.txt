@@ -16,3 +16,9 @@
 [DEBUG] [2024-11-12 18:54:39] This is the second Debug message.
 [ERROR] [2024-11-12 18:54:39] This is second error message.
 [ERROR] [2024-11-12 18:54:39] This is first error message.
+[INFO] [2024-11-12 21:29:26] This is the first info message.
+[DEBUG] [2024-11-12 21:29:30] This is the first Debug message.
+[ERROR] [2024-11-12 21:29:30] This is first error message.
+[DEBUG] [2024-11-12 21:29:30] This is the second Debug message.
+[ERROR] [2024-11-12 21:29:30] This is second error message.
+[ERROR] [2024-11-12 21:29:30] This is first error message.

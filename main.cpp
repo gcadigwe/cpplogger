@@ -28,13 +28,13 @@ enum class LogLevel {
     Error = 3,
 };
 
-void getFileSize (const std::string filepath) {
+std::variant<std::streampos, std::nullptr_t> getFileSize (const std::string filepath) {
     
     std::ifstream file(filepath, std::ios::binary);
     
     if(!file) {
         std::cerr << "Error opening file!" << std::endl;
-        return;
+        return nullptr;
     }
     
     // move the file pointer to the end
@@ -47,8 +47,20 @@ void getFileSize (const std::string filepath) {
     
     file.close();
     
-    return;
+    return fileSize;
     
+}
+
+int extractNumberBetweenGAndDot(const std::string& path) {
+    size_t gPos = path.find('g');
+    size_t dotPos = path.find('.', gPos);
+    
+    if (gPos != std::string::npos && dotPos != std::string::npos && gPos < dotPos) {
+        std::string numberStr = path.substr(gPos + 1, dotPos - gPos - 1);
+        return std::stoi(numberStr);
+    }
+    
+    return -1;
 }
 
 
@@ -61,6 +73,7 @@ public:
     
     void logtofile(const std::string message, const std::string path) const {
         std::ofstream outFile(path, std::ios::app);
+        
         
         if(!outFile) {
             std::cerr << "Error: Could not open the file for writing." <<std::endl;
@@ -81,6 +94,9 @@ public:
         if(static_cast<int>(level) >= static_cast<int>(m_logLevel)) {
             std::ostringstream oss;
             std::string levelStr;
+            std::streampos sizeOfFile;
+            int numlogs;
+            std::ostringstream newpath;
             
             switch (level) {
                 case LogLevel::Info:
@@ -99,9 +115,50 @@ public:
             oss << "[" << levelStr << "] " << "[" << getCurrentDateTime() << "] " << message;
             const std::string entry = oss.str();
             std::cout << entry << std::endl;
-            const std::string path = "log.txt";
             
-            getFileSize(path);
+            std::string path = "log0.txt";
+            
+            std::variant<std::streampos, std::nullptr_t> size = getFileSize(path);
+            
+            if(std::holds_alternative<std::streampos>(size)){
+                
+               sizeOfFile  = std::get<std::streampos>(size);
+                
+            }else{
+                std::cerr << "Failed to retrieve file size." << std::endl;
+            }
+            
+//            while(sizeOfFile > 1000) {
+                
+                if(sizeOfFile > 1000) {
+                    numlogs = extractNumberBetweenGAndDot(path);
+                    
+                    std::cout << numlogs << std::endl;
+                    
+                    newpath << "log" << numlogs+1 << ".txt";
+                    
+                    path = newpath.str();
+                    
+                    std::cout << path << std::endl;
+                    
+//                    std::variant<std::streampos, std::nullptr_t> size = getFileSize(newpath.str());
+//
+//                    if(std::holds_alternative<std::streampos>(size)){
+//
+//                        sizeOfFile  = std::get<std::streampos>(size);
+//
+//                    }else{
+//                        std::cerr << "Failed to retrieve file size." << std::endl;
+//                    }
+//
+                    std::cout << "greater than 1000" << std::endl;
+                    
+                }else{
+                    std::cout << "less than 1000" << std::endl;
+                }
+//            }
+           
+            
             this->logtofile(entry, path);
             
         }
