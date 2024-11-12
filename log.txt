@@ -4,3 +4,15 @@
 [DEBUG] [2024-11-11 20:42:23] This is the second Debug message.
 [ERROR] [2024-11-11 20:42:23] This is second error message.
 [ERROR] [2024-11-11 20:42:23] This is first error message.
+[INFO] [2024-11-12 18:54:16] This is the first info message.
+[DEBUG] [2024-11-12 18:54:20] This is the first Debug message.
+[ERROR] [2024-11-12 18:54:20] This is first error message.
+[DEBUG] [2024-11-12 18:54:20] This is the second Debug message.
+[ERROR] [2024-11-12 18:54:20] This is second error message.
+[ERROR] [2024-11-12 18:54:20] This is first error message.
+[INFO] [2024-11-12 18:54:39] This is the first info message.
+[DEBUG] [2024-11-12 18:54:39] This is the first Debug message.
+[ERROR] [2024-11-12 18:54:39] This is first error message.
+[DEBUG] [2024-11-12 18:54:39] This is the second Debug message.
+[ERROR] [2024-11-12 18:54:39] This is second error message.
+[ERROR] [2024-11-12 18:54:39] This is first error message.

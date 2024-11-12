@@ -28,6 +28,29 @@ enum class LogLevel {
     Error = 3,
 };
 
+void getFileSize (const std::string filepath) {
+    
+    std::ifstream file(filepath, std::ios::binary);
+    
+    if(!file) {
+        std::cerr << "Error opening file!" << std::endl;
+        return;
+    }
+    
+    // move the file pointer to the end
+    
+    file.seekg(0, std::ios::end);
+    
+    std::streampos fileSize = file.tellg();
+    
+    std::cout << "File size: " << fileSize << " bytes" << std::endl;
+    
+    file.close();
+    
+    return;
+    
+}
+
 
 
 class Logger {
@@ -36,8 +59,8 @@ public:
     
     Logger(): m_logLevel(LogLevel::Info){};
     
-    void logtofile(const std::string message) const {
-        std::ofstream outFile("log.txt", std::ios::app);
+    void logtofile(const std::string message, const std::string path) const {
+        std::ofstream outFile(path, std::ios::app);
         
         if(!outFile) {
             std::cerr << "Error: Could not open the file for writing." <<std::endl;
@@ -61,21 +84,14 @@ public:
             
             switch (level) {
                 case LogLevel::Info:
-//                    std::ostringstream oss;
-//                    oss << "[INFO] " << "[" << getCurrentDateTime() << "] " << message;
-//                    const std::string entry = oss.str();
-//                    std::cout << "[INFO] " << "[" << getCurrentDateTime() << "] " << message << std::endl;
-//                    this -> logtofile(entry);
                     levelStr = "INFO";
                     break;
                     
                 case LogLevel::Debug:
-//                    std::cout << "[DEBUG] " << "[" << getCurrentDateTime() << "] "  << message << std::endl;
                     levelStr = "DEBUG";
                     break;
                     
                 case LogLevel::Error:
-//                    std::cout << "[ERROR] " << "[" << getCurrentDateTime() << "] "  << message << std::endl;
                     levelStr = "ERROR";
                     break;
             }
@@ -83,8 +99,10 @@ public:
             oss << "[" << levelStr << "] " << "[" << getCurrentDateTime() << "] " << message;
             const std::string entry = oss.str();
             std::cout << entry << std::endl;
+            const std::string path = "log.txt";
             
-            this->logtofile(entry);
+            getFileSize(path);
+            this->logtofile(entry, path);
             
         }
     }
