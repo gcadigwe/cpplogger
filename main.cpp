@@ -95,8 +95,9 @@ public:
             std::ostringstream oss;
             std::string levelStr;
             std::streampos sizeOfFile;
-            int numlogs;
+//            int numlogs;
             std::ostringstream newpath;
+//            bool moreFileSize = true;
             
             switch (level) {
                 case LogLevel::Info:
@@ -129,33 +130,23 @@ public:
             }
             
 //            while(sizeOfFile > 1000) {
-                
-                if(sizeOfFile > 1000) {
-                    numlogs = extractNumberBetweenGAndDot(path);
-                    
-                    std::cout << numlogs << std::endl;
-                    
-                    newpath << "log" << numlogs+1 << ".txt";
-                    
-                    path = newpath.str();
-                    
-                    std::cout << path << std::endl;
-                    
-//                    std::variant<std::streampos, std::nullptr_t> size = getFileSize(newpath.str());
 //
-//                    if(std::holds_alternative<std::streampos>(size)){
+//                if(sizeOfFile > 1000) {
+//                    numlogs = extractNumberBetweenGAndDot(path);
 //
-//                        sizeOfFile  = std::get<std::streampos>(size);
+//                    std::cout << numlogs << std::endl;
 //
-//                    }else{
-//                        std::cerr << "Failed to retrieve file size." << std::endl;
-//                    }
+//                    newpath << "log" << numlogs+1 << ".txt";
 //
-                    std::cout << "greater than 1000" << std::endl;
-                    
-                }else{
-                    std::cout << "less than 1000" << std::endl;
-                }
+//                    path = newpath.str();
+//
+//                    std::cout << path << std::endl;
+//
+//                    std::cout << "greater than 1000" << std::endl;
+//
+//                }else{
+//                    std::cout << "less than 1000" << std::endl;
+//                }
 //            }
            
             
